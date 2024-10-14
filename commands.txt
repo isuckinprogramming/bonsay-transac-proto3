@@ -1,6 +1,10 @@
 Install the nx for workspace set-up and monorepo
 npm i -g nx
 
+nx workspace 18 is the only version of the
+nx workspace that works with nx-electron.
+npx create-nx-workspace@18 --preset=angular-monorepo --name=bonsayTransacProto3 --appName=renderer --style=css --ssr=false --bundler=esbuild
+
 Install Electron and Electron builder
 npm i nx-electron electron-builder --save-dev
 

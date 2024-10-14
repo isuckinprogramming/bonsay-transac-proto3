@@ -40,3 +40,8 @@ Thumbs.db
 
 .nx/cache
 .angular
+
+
+# Do not post the database file to the github repo
+*.db
+*.sql
