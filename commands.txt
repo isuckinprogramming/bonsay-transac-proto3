@@ -1,4 +1,7 @@
+Command
+
 Install the nx for workspace set-up and monorepo
+
 npm i -g nx
 
 nx workspace 18 is the only version of the

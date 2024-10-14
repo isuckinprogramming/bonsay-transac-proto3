@@ -10,7 +10,7 @@ export const user_crendentials_table = `  CREATE TABLE IF NOT EXISTS user_creden
       account_creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       is_system_admin INTEGER CHECK( is_valid_account IN (1,0) ) DEFAULT 0,
       employee_position TEXT DEFAULT 'unspecified'
-  );
+  )
 `;
 
 export const user_permissions_table =  `CREATE TABLE IF NOT EXISTS user_permissions(
@@ -37,20 +37,22 @@ export const user_permissions_table =  `CREATE TABLE IF NOT EXISTS user_permissi
 
 export const rooms_credentials_table = `CREATE TABLE IF NOT EXISTS rooms_credentials(
 
-    room_id INTEGER PRIMARY KEY,
+    room_id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    room_code TEXT DEFAULT "BLANK",
 
     current_room_capacity INTEGER NOT NULL CHECK( current_room_capacity >= 1),
     current_rate JSON NOT NULL,
     valid_as_of TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     set_up_by INTEGER,
 
-    FOREIGN KEY(set_up_by) REFERENCES user_credentials(user_id);
-);`;
+    FOREIGN KEY(set_up_by) REFERENCES user_credentials(user_id)
+)`;
 
 
 export const rooms_history_table = `CREATE TABLE IF NOT EXISTS rooms_history (
 
-    rooms_history_id INTEGER PRIMARY KEY AUTO_INCREMENT
+    rooms_history_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
     room_id INTEGER,
 
@@ -66,7 +68,7 @@ export const rooms_history_table = `CREATE TABLE IF NOT EXISTS rooms_history (
     FOREIGN KEY(validated_by) REFERENCES user_credentials( user_id ),
     FOREIGN KEY(invalidated_by) REFERENCES user_credentials( user_id ),
     FOREIGN KEY(room_id) REFERENCES rooms_credentials( room_id )
-);
+)
 `;
 
 export const customers_table = `
@@ -80,7 +82,7 @@ CREATE TABLE IF NOT EXISTS customers (
 
     avail_room_lodging INTEGER CHECK( avail_room_lodging IN (0,1) ) NOT NULL DEFAULT 0 ,
     avail_catering_service INTEGER CHECK( avail_catering_service IN (0,1) ) NOT NULL DEFAULT 0
-);
+)
 `;
 
 
@@ -100,7 +102,7 @@ CREATE TABLE IF NOT EXISTS transactions(
     total_cost INTEGER NOT NULL CHECK( total_cost >= 1),
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
     FOREIGN KEY (user_id) REFERENCES user_credentials(user_id)
-);
+)
 `;
 
 export const rooms_lodging_processing_table = `
@@ -126,7 +128,7 @@ CREATE TABLE IF NOT EXISTS rooms_lodging_processing (
   FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
   FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
   FOREIGN KEY (room_id) REFERENCES rooms_history( room_id )
-);`;
+)`;
 
 export const catering_service_table =`
 
@@ -148,7 +150,7 @@ CREATE TABLE IF NOT EXISTS catering_service(
     total_paid INTEGER NOT NUll CHECK(total_paid >= 1),
 
     FOREIGN KEY(transaction_id) REFERENCES transactions( transaction_id )
-);`;
+)`;
 
 export const catering_service_invoice_table = `
 CREATE TABLE IF NOT EXISTS catering_service_invoice(
@@ -184,5 +186,5 @@ CREATE TABLE IF NOT EXISTS catering_service_invoice(
     osca_pwd_id TEXT NOT NULL DEFAULT "unavailable",
 
     FOREIGN KEY( catering_service_id) REFERENCES catering_service(catering_service_id)
-);
+)
 `;

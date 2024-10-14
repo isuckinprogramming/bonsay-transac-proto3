@@ -18,6 +18,7 @@
     "@journeyapps/sqlcipher": "^5.3.1",
     "@nx/angular": "18.3.5",
     "better-sqlite3": "^11.3.0",
+    "bootstrap": "^5.3.3",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security",

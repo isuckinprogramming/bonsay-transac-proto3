@@ -69,11 +69,3 @@ ipcMain.handle(
   }
 );
 
-ipcMain.handle(
-  'saveUserData',
-  ( event,username,password ) => {
-    console.log("success trigger but no data received if there is data it would be presented", event,username,password);
-    return true;
-    // saveUserData();
-  }
-)
