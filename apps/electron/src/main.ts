@@ -1,8 +1,16 @@
 import SquirrelEvents from './app/events/squirrel.events';
 import ElectronEvents from './app/events/electron.events';
+
 import UpdateEvents from './app/events/update.events';
+// import {saveUserData } from './app/dbCRUD/testUserCRUD.js'
+
+import { saveUserData }  from  './app/dbCRUD/testUserCRUD';
+
 import { app, BrowserWindow } from 'electron';
+
 import App from './app/app';
+
+import { ipcMain } from 'electron';
 
 export default class Main {
   static initialize() {
@@ -32,3 +40,40 @@ Main.initialize();
 // bootstrap app
 Main.bootstrapApp();
 Main.bootstrapAppEvents();
+
+// App Electron and App Angular Data Interchange
+ipcMain.handle(
+  'userLoginDataSubmission',
+  async (
+    event,
+    username,
+    password
+  ) => {
+    return new Promise(
+      (resolve,reject) => {
+
+
+          console.log(username, password, event);
+
+        if (username != "" && password != "") {
+
+          console.log("working data from promise")
+          resolve({status:"success mother fucker"});
+
+        } else {
+          console.log("Not working")
+          reject("nu ughhh, not working")
+        }
+      }
+    );
+  }
+);
+
+ipcMain.handle(
+  'saveUserData',
+  ( event,username,password ) => {
+    console.log("success trigger but no data received if there is data it would be presented", event,username,password);
+    return true;
+    // saveUserData();
+  }
+)

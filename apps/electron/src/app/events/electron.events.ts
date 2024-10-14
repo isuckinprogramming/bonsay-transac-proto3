@@ -13,7 +13,8 @@ export default class ElectronEvents {
 }
 
 // Retrieve app version
-ipcMain.handle('get-app-version', (event) => {
+ipcMain.handle(
+  'get-app-version', (event) => {
   console.log(`Fetching application version... [v${environment.version}]`);
 
   return environment.version;
