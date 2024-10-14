@@ -15,7 +15,12 @@
     "@angular/platform-browser": "~17.3.0",
     "@angular/platform-browser-dynamic": "~17.3.0",
     "@angular/router": "~17.3.0",
+    "@journeyapps/sqlcipher": "^5.3.1",
     "@nx/angular": "18.3.5",
+    "better-sqlite3": "^11.3.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
